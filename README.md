@@ -7,7 +7,10 @@
 </p>
 
 ---
-[![asciicast](https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF.svg)](https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF)
+
+<p align="center">
+  <a href="https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF"><img src="https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF.svg"/></a>
+</p>
 
 ## Introduction
 
