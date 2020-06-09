@@ -8,6 +8,8 @@
 
 ---
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/912008edef1b4960818c29a16ef2c29f)](https://app.codacy.com/manual/lagmoellertim/unsilence?utm_source=github.com&utm_medium=referral&utm_content=lagmoellertim/unsilence&utm_campaign=Badge_Grade_Dashboard)
+
 <p align="center">
   <a href="https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF" target="_blank"><img src="https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF.svg"/></a>
 </p>
