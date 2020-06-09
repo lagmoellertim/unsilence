@@ -121,7 +121,7 @@ unsilence --help
 ``` 
 
 ## Basic Library Usage
-Take a look at this [example](https://github.com/lagmoellertim/unsilence/examples/basic_usage.py)
+Take a look at this [example](https://github.com/lagmoellertim/unsilence/blob/master/examples/basic_usage.py)
 
 ## Contributing
 
