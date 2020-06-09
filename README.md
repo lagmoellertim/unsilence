@@ -3,13 +3,13 @@
 *<p align="center">Console Interface and Library to remove silent parts of a media file</p>*
 
 <p align="center">
-  <a href="https://github.com/lagmoellertim/unsilence/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat"/></a>
+  <a href="https://github.com/lagmoellertim/unsilence/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat"/></a>
 </p>
 
 ---
 
 <p align="center">
-  <a href="https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF"><img src="https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF.svg"/></a>
+  <a href="https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF" target="_blank"><img src="https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF.svg"/></a>
 </p>
 
 ## Introduction
@@ -48,7 +48,8 @@ pip install pipx
 # Installing Unsilence as Command Line Software
 pipx install unsilence
 
-# If pipx asks you to, you also need to execute the following line as well as close and reopen your terminal window
+# If pipx asks you to, you also need to execute the following line
+# as well as close and reopen your terminal window
 pipx ensurepath
 ```
 
