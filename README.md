@@ -14,6 +14,28 @@
   <a href="https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF" target="_blank"><img src="https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF.svg"/></a>
 </p>
 
+### Demo
+
+|Unedited (Before)|Processed by Unsilence (After)|
+|:-:|:-:|
+|[![Unedited Demo Video][unedited_demo_video_1_gif]][unedited_demo_video_1_vid]|[![Edited Demo Video][edited_demo_video_1_gif]][edited_demo_video_1_vid]|
+|Time before edit: 0:09:45 (100%)| Time after edit: 0:07:56 (81.2%), Difference: -0:01:50 (-18.8%)|
+
+The MIT Intro at the beginning is not included into the time, since I left it in to show the license of the videos.
+
+These videos are from this online lecture: 
+
+Ana Bell, Eric Grimson, and John Guttag. 6.0001 Introduction to Computer Science and Programming in Python. Fall 2016. Massachusetts Institute of Technology: MIT OpenCourseWare, https://ocw.mit.edu. License: Creative Commons BY-NC-SA.
+
+More Information about Licensing can be found in the Licensing Segment of this README.
+
+
+[unedited_demo_video_1_gif]: https://j.gifs.com/MwqApm.gif
+[unedited_demo_video_1_vid]: https://youtu.be/wl7bveY5Ze4
+
+[edited_demo_video_1_gif]: https://j.gifs.com/p8DmMV.gif
+[edited_demo_video_1_vid]: https://youtu.be/EaQh9cZ_jrs
+
 ## Introduction
 
 Unsilence is an **open-source tool** that **removes silence** from a media clip of your choice (audio, video).
@@ -125,9 +147,14 @@ unsilence --help
 ## Basic Library Usage
 Take a look at this [example](https://github.com/lagmoellertim/unsilence/blob/master/examples/basic_usage.py)
 
+## Idea/Inspiration
+
+For this project, I took inspiration from the CaryKH's video [Jumpcutter](https://www.youtube.com/watch?v=DQ8orIurGxw).
+This project does not share any source code with his implementation, and is more optimized for my use case (fast and efficient lecture silence removal).
+
 ## Contributing
 
-If you are missing a feature or have new idea, go for it! That is what open-source is for!
+If you are missing a feature or have new idea, go for it! That is what open-source is for! 😃
 
 ## Author
 
@@ -139,15 +166,16 @@ You can also contribute by [buying me a coffee](https://www.buymeacoffee.com/lag
 
 <a href="https://www.buymeacoffee.com/lagmoellertim" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
-## Idea/Inspiration
-
-For this project, I took inspiration from the CaryKH's video [Jumpcutter](https://www.youtube.com/watch?v=DQ8orIurGxw).
-This project does not share any source code with his implementation, and is more optimized for my use case (fast and efficient lecture silence removal).
-
 ## License
+
+The Code is licensed under the 
 
 [MIT License](https://github.com/lagmoellertim/unsilence/blob/master/LICENSE)
 
 Copyright © 2019-present, [Tim-Luca Lagmöller](https://lagmoellertim.de)
+
+All used videos are licensed under the 
+
+[Creative Commons BY-NC-SA License](https://ocw.mit.edu/terms/#cc)
 
 ## Have fun :tada:
