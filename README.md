@@ -139,6 +139,11 @@ You can also contribute by [buying me a coffee](https://www.buymeacoffee.com/lag
 
 <a href="https://www.buymeacoffee.com/lagmoellertim" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
+## Idea/Inspiration
+
+For this project, I took inspiration from the CaryKH's video [Jumpcutter](https://www.youtube.com/watch?v=DQ8orIurGxw).
+This project does not share any source code with his implementation, and is more optimized for my use case (fast and efficient lecture silence removal).
+
 ## License
 
 [MIT License](https://github.com/lagmoellertim/unsilence/blob/master/LICENSE)
