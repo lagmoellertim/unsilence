@@ -1,4 +1,3 @@
-import os
 import sys
 
 from rich.console import Console
@@ -8,6 +7,7 @@ from unsilence.Unsilence import Unsilence
 from unsilence.command_line.ChoiceDialog import choice_dialog
 from unsilence.command_line.ParseArguments import parse_arguments
 from unsilence.command_line.PrettyTimeEstimate import pretty_time_estimate
+from unsilence.command_line.TerminalSupport import repair_console
 
 
 def main():
@@ -16,14 +16,13 @@ def main():
     :return: None
     """
     try:
+        repair_console()
         run()
     except KeyboardInterrupt:
         print("\nInterrupted")
 
-    try:
-        sys.exit(0)
-    except SystemExit:
-        os._exit(0)
+    repair_console()
+    sys.exit(0)
 
 
 def run():
@@ -108,3 +107,4 @@ def run():
         progress.stop()
 
     console.print("\n[green]Finished![/green] :tada:")
+    print()

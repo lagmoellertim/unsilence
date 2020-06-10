@@ -73,6 +73,7 @@ class MediaRenderer:
         task_queue = queue.Queue()
         thread_list = []
         completed_tasks = []
+        corrupted_intervals = []
 
         def handle_thread_completed_task(completed_task, corrupted):
             """
@@ -82,12 +83,17 @@ class MediaRenderer:
             :return: None
             """
             func = kwargs.get("on_render_progress_update", None)
+
+            thread_lock.acquire()
+
             if not corrupted:
-                thread_lock.acquire()
                 completed_tasks.append(completed_task)
                 if func is not None:
                     func(len(completed_tasks), len(intervals.intervals))
-                thread_lock.release()
+            else:
+                corrupted_intervals.append(completed_task)
+
+            thread_lock.release()
 
         for i in range(kwargs.get("threads", 2)):
             thread = RenderIntervalThread(i, input_file, render_options, task_queue, thread_lock,
@@ -107,7 +113,7 @@ class MediaRenderer:
             task_queue.put(task)
             thread_lock.release()
 
-        while not task_queue.empty() or len(completed_tasks) != len(intervals.intervals):
+        while len(completed_tasks) < (len(intervals.intervals) - len(corrupted_intervals)):
             time.sleep(0.5)
 
         for thread in thread_list:
