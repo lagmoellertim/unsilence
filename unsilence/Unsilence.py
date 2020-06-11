@@ -6,6 +6,7 @@ from unsilence.lib.detect_silence.DetectSilence import detect_silence
 from unsilence.lib.intervals.Intervals import Intervals
 from unsilence.lib.intervals.TimeCalculations import calculate_time
 from unsilence.lib.render_media.MediaRenderer import MediaRenderer
+from unsilence.lib.tools.ffmpeg_version import get_ffmpeg_version
 
 
 class Unsilence:
@@ -15,13 +16,23 @@ class Unsilence:
 
     def __init__(self, input_file: Path, temp_dir: Path = Path(".tmp")):
         """
-        Initializes a new Unsilence Object
+        Initializes a new Unsilence Obqject
         :param input_file: The file that should be processed
         :param temp_dir: The temp dir where temporary files can be saved
         """
         self.__input_file = Path(input_file)
         self.__temp_dir = Path(temp_dir)
         self.__intervals: Intervals = None
+
+        ffmpeg_version = get_ffmpeg_version()
+        if ffmpeg_version is None:
+            raise EnvironmentError("ffmpeg not found!")
+        else:
+            if ffmpeg_version[0] != 4 or ffmpeg_version[1] < 2:
+                raise EnvironmentError(
+                    f"ffmpeg with version {ffmpeg_version.join('.')} found, but a version > 4.2.0 is required!"
+                )
+
         atexit.register(self.cleanup)
 
     def detect_silence(self, **kwargs):
