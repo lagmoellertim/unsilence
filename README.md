@@ -5,6 +5,7 @@
 <p align="center">
   <a href="https://github.com/lagmoellertim/unsilence/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="MIT License Badge"/></a>
   <a href="https://github.com/lagmoellertim/unsilence/actions" target="_blank"><img src="https://github.com/lagmoellertim/unsilence/workflows/Upload Python Package/badge.svg" alt="Github Action Badge"/></a>
+   <a href="https://hub.docker.com/repository/docker/lagmoellertim/unsilence" target="_blank"><img src="https://img.shields.io/docker/cloud/build/lagmoellertim/unsilence" alt="Docker Cloud Build Status"/></a>
   <a href="https://app.codacy.com/manual/lagmoellertim/unsilence?utm_source=github.com&utm_medium=referral&utm_content=lagmoellertim/unsilence&utm_campaign=Badge_Grade_Dashboard" target="_blank"><img src="https://api.codacy.com/project/badge/Grade/912008edef1b4960818c29a16ef2c29f" alt="Codacy Badge"/></a>
 </p>
 
