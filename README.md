@@ -60,7 +60,7 @@ Unsilence can be used as a console line interface or as a python library, with w
 
 ### Prerequisites
 
-- [Python](https://www.python.org/) >= 3.8.0
+- [Python](https://www.python.org/) >= 3.7.0
 - [pip](https://pypi.org/) (should be installed automatically with python, could be different on some linux distros)
 - [ffmpeg](https://ffmpeg.org/)  >= 4.2.0
 
