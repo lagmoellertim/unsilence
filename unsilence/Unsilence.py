@@ -31,7 +31,7 @@ class Unsilence:
             if ffmpeg_version[0] != 4 or ffmpeg_version[1] < 2:
                 raise EnvironmentError(
                     "ffmpeg with version {} found, but a version > 4.2.0 is required!".format(
-                        [str(x) for x in ffmpeg_version].join(".")
+                        "".join([str(x) for x in ffmpeg_version])
                     )
                 )
 
