@@ -145,18 +145,18 @@ class MediaRenderer:
         total_files = len(file_list)
 
         with open(str(concat_file), "w+") as file:
-            lines = [f"file {interval_file}\n" for interval_file in file_list]
+            lines = [f"file {interval_file.name}\n" for interval_file in file_list]
             file.writelines(lines)
 
         command = [
             "ffmpeg",
             "-f", "concat",
             "-safe", "0",
-            "-i", f"{concat_file}",
+            "-i", f"{concat_file.as_posix()}",
             "-c", "copy",
             "-y",
             "-loglevel", "verbose",
-            f"{output_file}"
+            f"{output_file.as_posix()}"
         ]
 
         console_output = subprocess.Popen(
