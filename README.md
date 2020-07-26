@@ -12,7 +12,7 @@
 ---
 
 <p align="center">
-  <a href="https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF" target="_blank"><img src="https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF.svg"/></a>
+  <a href="https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF" target="_blank"><img src="https://raw.githubusercontent.com/lagmoellertim/unsilence/master/media/terminal.gif"/></a>
 </p>
 
 ### Demo
