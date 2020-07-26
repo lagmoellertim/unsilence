@@ -31,10 +31,10 @@ Ana Bell, Eric Grimson, and John Guttag. 6.0001 Introduction to Computer Science
 More Information about Licensing can be found in the Licensing Segment of this README.
 
 
-[unedited_demo_video_1_gif]: https://j.gifs.com/MwqApm.gif
+[unedited_demo_video_1_gif]: https://raw.githubusercontent.com/lagmoellertim/unsilence/master/media/unedited_demo.gif
 [unedited_demo_video_1_vid]: https://youtu.be/wl7bveY5Ze4
 
-[edited_demo_video_1_gif]: https://j.gifs.com/p8DmMV.gif
+[edited_demo_video_1_gif]: https://raw.githubusercontent.com/lagmoellertim/unsilence/master/media/edited_demo.gif
 [edited_demo_video_1_vid]: https://youtu.be/EaQh9cZ_jrs
 
 ## Introduction
