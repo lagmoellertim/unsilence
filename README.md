@@ -15,6 +15,13 @@
   <a href="https://asciinema.org/a/jnU7VsPNqaNER3dSrvLp2RAQF" target="_blank"><img src="https://raw.githubusercontent.com/lagmoellertim/unsilence/master/media/terminal.gif"/></a>
 </p>
 
+### Change or keep the name unsilence?
+
+Some people think the name unsilence does not accurately represent its function. If you have any better ideas on what to name this, click on the poll below and comment your favorite name under this [issue](https://github.com/lagmoellertim/unsilence/issues/20).
+
+[![](https://api.gh-polls.com/poll/01EE865Q74KF11ZW2XJMPB4FBM/Keep%20the%20name%20unsilence)](https://api.gh-polls.com/poll/01EE865Q74KF11ZW2XJMPB4FBM/Keep%20the%20name%20unsilence/vote)
+[![](https://api.gh-polls.com/poll/01EE865Q74KF11ZW2XJMPB4FBM/Change%20the%20name%2C%20write%20your%20favorite%20name%20in%20the%20comments)](https://api.gh-polls.com/poll/01EE865Q74KF11ZW2XJMPB4FBM/Change%20the%20name%2C%20write%20your%20favorite%20name%20in%20the%20comments/vote)
+
 ### Demo
 
 |Unedited (Before)|Processed by Unsilence (After)|
