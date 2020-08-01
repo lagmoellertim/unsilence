@@ -6,7 +6,7 @@ from rich.progress import Progress
 from unsilence.Unsilence import Unsilence
 from unsilence.command_line.ChoiceDialog import choice_dialog
 from unsilence.command_line.ParseArguments import parse_arguments
-from unsilence.command_line.PrettyTimeEstimate import pretty_time_estimate
+from unsilence.command_line.PrettyTimeEstimate import pretty_time_estimate, pretty_time_estimate_sla
 from unsilence.command_line.TerminalSupport import repair_console
 
 
@@ -69,9 +69,26 @@ def run():
         def update_task(current_task):
             def handler(current_val, total):
                 progress.update(current_task, total=total, completed=current_val)
-
+                
             return handler
 
+        if args.silence_level_analysis:
+            argument_dict_for_sla = argument_dict_for_silence_detect.copy()
+            estimated_times = {}
+            for silence_level in [-40, -35, -30, -25, -20]:
+                progress.start()
+                sla_subtask = progress.add_task("SLA for silence level " + str(silence_level), total=1)
+                argument_dict_for_sla['silence_level'] = silence_level
+                continual.detect_silence(on_silence_detect_progress_update=update_task(sla_subtask), **argument_dict_for_sla)
+                estimated_times['silence_level_'+str(silence_level)] = continual.estimate_time(args.audible_speed, args.silent_speed)
+                progress.stop()
+                progress.remove_task(sla_subtask)
+            console.print(pretty_time_estimate_sla(estimated_times))
+            if not args.non_interactive_mode:
+                if not choice_dialog(console, "Silent level analysis finished. Continue with original silence level?", default=True):
+                    return
+
+        progress.start()
         silence_detect_task = progress.add_task("Calculating Intervals...", total=1)
 
         continual.detect_silence(

@@ -55,3 +55,33 @@ def pretty_time_estimate(time_data: dict):
     )
 
     return table
+
+def pretty_time_estimate_sla(time_data: dict):
+    """
+    Printing the silent level analysis
+    Generates a rich.table.Table object from the time_data dict (from lib.Intervals.TimeCalculations.calculate_time)
+    :param time_data: time_data nested dict with silence levels
+    :return: rich.table.Table object
+    """
+    table = Table(show_header=True, header_style="bold magenta")
+    table.add_column("Silence Levels")
+    table.add_column("Detected Silence")
+    table.add_column("Combined_Before")
+    table.add_column("Combined_After")
+
+    for key in time_data.keys():
+        reorderer_time_data = {"all": {}, "audible": {}, "silent": {}}
+        for column, row_with_values in time_data[key].items():
+            for row, values in row_with_values.items():
+                time_delta = format_timedelta(round(values[0]))
+                reorderer_time_data[row][column] = f"{time_delta} ([cyan]{round(values[1] * 100, 1)}%[/cyan])"
+        table.add_row(
+        key.split('_')[-1],
+        reorderer_time_data["silent"]["before"],
+        reorderer_time_data["all"]["before"],
+        reorderer_time_data["all"]["after"]
+        )
+    return table
+
+
+    

@@ -88,5 +88,7 @@ def parse_arguments():
 
     parser.add_argument("-d", "--debug", action="store_true",
                         help="Enable debug output (StackTrace)")
+    parser.add_argument("-sla", "--silence-level-analysis", action="store_true",
+                        help="Helps to decide silence level, might take some time.")
 
     return parser.parse_args()
