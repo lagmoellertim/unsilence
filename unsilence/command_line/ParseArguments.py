@@ -41,6 +41,15 @@ def number_bigger_than_zero(s):
 
     return i
 
+def sla_input(s):
+    """
+    Only valid if the input string is one of the valid sla options - low, normal, high, full
+    :param s: Input string
+    :return: String if it is one of low, normal, high or full.
+    """
+    if s not in ["low", "normal", "high", "full"]:
+        raise argparse.ArgumentTypeError("sla string must be one of low, normal, high or full.")
+    return s
 
 def parse_arguments():
     """
@@ -88,7 +97,7 @@ def parse_arguments():
 
     parser.add_argument("-d", "--debug", action="store_true",
                         help="Enable debug output (StackTrace)")
-    parser.add_argument("-sla", "--silence-level-analysis", action="store_true",
-                        help="Helps to decide silence level, might take some time.")
+    parser.add_argument("-sla", "--silence-level-analysis", type=sla_input, const="normal", nargs="?",
+                        help="Helps to decide silence level, might take some time. Four options - low, normal, high, full.")
 
     return parser.parse_args()
