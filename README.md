@@ -161,7 +161,7 @@ If you are missing a feature or have new idea, go for it! That is what open-sour
 
 **Tim-Luca Lagmöller** ([@lagmoellertim](https://github.com/lagmoellertim))
 
-## Donate
+## Donations / Sponsors
 
 I'm part of the official GitHub Sponsors program where you can support me on a monthly basis.
 
