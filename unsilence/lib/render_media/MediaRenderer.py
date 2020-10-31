@@ -61,6 +61,11 @@ class MediaRenderer:
             drop_corrupted_intervals=kwargs.get("drop_corrupted_intervals", False)
         )
 
+        intervals = intervals.remove_short_intervals_from_start(
+            render_options.audible_speed,
+            render_options.silent_speed
+        )
+
         video_temp_path = self.__temp_path / str(uuid.uuid4())
         video_temp_path.mkdir(parents=True)
 
