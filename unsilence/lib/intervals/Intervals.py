@@ -83,6 +83,25 @@ class Intervals:
                 is_end_interval=(i == len(self.__interval_list) - 1)
             )
 
+    def remove_short_intervals_from_start(self, audible_speed=1, silent_speed=2):
+        """
+        Removes Intervals from start that are shorter than 0.5 seconds after
+        speedup to avoid having a final output without an audio track
+        :param audible_speed: The speed at which the audible intervals get played back at (float)
+        :param silent_speed: The speed at which the silent intervals get played back at (float)
+        :return: The new, possibly shorter, Intervals object
+        """
+        for i, interval in enumerate(self.__interval_list):
+            if interval.is_silent:
+                speed = silent_speed
+            else:
+                speed = audible_speed
+
+            if interval.duration / speed > 0.5:
+                return Intervals(self.__interval_list[i:])
+
+        raise Exception("No interval has a length over 0.5 seconds after speed changes! This is required.")
+
     def copy(self):
         """
         Creates a deep copy
