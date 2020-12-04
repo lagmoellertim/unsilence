@@ -56,6 +56,9 @@ You can use it to **speed up** videos without changing the audible speed, so you
     
 - You want to have some fun and remove all the audible parts from a video, leaving only the parts where nearly silent noises are in the video (breathing, writing, ...)
 
+### Communication
+If you have any (technical) questions about unsilence, you can ask/discuss it on [Gitter](https://gitter.im/unsilence-tool/community) to get community feedback. To report a bug or suggest a new feature, create a new issue instead. 
+
 ### Usage Information
 
 Unsilence can be used as a console line interface or as a python library, with which you can develop your own projects
