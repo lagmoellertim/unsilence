@@ -14,7 +14,7 @@ def choice_dialog(console: Console, message: str, default: bool = None):
 
     result = None
     while result is None:
-        choice = console.input(f"[[[green]?[/green]]] {message} ({yes}/{no}) ").lower()
+        choice = console.input(f"[[green]?[/green]] {message} ({yes}/{no}) ").lower()
         if choice in ["yes", "y"]:
             result = True
         elif choice in ["no", "n"]:

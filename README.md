@@ -69,6 +69,8 @@ Unsilence can be used as a console line interface or as a python library, with w
 - [pip](https://pypi.org/) (should be installed automatically with python, could be different on some linux distros)
 - [ffmpeg](https://ffmpeg.org/)  >= 4.2.4
 
+In order to see the fancy progress bar and other terminal styling on windows, you should use [Windows Terminal](https://github.com/microsoft/terminal).
+
 ### Installation as command line interface (using pip and pipx)
 
 ```sh
