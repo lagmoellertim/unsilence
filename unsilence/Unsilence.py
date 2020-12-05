@@ -6,7 +6,8 @@ from unsilence.lib.detect_silence.DetectSilence import detect_silence
 from unsilence.lib.intervals.Intervals import Intervals
 from unsilence.lib.intervals.TimeCalculations import calculate_time
 from unsilence.lib.render_media.MediaRenderer import MediaRenderer
-from unsilence.lib.tools.ffmpeg_version import get_ffmpeg_version
+from unsilence.lib.tools.ffmpeg_version import is_ffmpeg_usable
+import sys
 
 
 class Unsilence:
@@ -24,16 +25,14 @@ class Unsilence:
         self.__temp_dir = Path(temp_dir)
         self.__intervals: Intervals = None
 
-        ffmpeg_version = get_ffmpeg_version()
-        if ffmpeg_version is None:
+        ffmpeg_status = is_ffmpeg_usable()
+        if ffmpeg_status == "not_detected":
             raise EnvironmentError("ffmpeg not found!")
-        else:
-            if ffmpeg_version[0] < 4 or ffmpeg_version[1] < 2:
-                raise EnvironmentError(
-                    "ffmpeg with version {} found, but a version > 4.2.0 is required!".format(
-                        "".join([str(x) for x in ffmpeg_version])
-                    )
-                )
+        elif ffmpeg_status == "requirements_unsatisfied":
+            raise EnvironmentError("ffmpeg version not supported, a version >= 4.2.4 is required!")
+        elif ffmpeg_status == "unknown_version":
+            print("Could not detect ffmpeg version, proceed at your own risk! (version >= 4.2.4 required)",
+                  file=sys.stderr)
 
         atexit.register(self.cleanup)
 
