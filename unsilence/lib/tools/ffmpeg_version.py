@@ -1,8 +1,9 @@
 import re
 import subprocess
+from pkg_resources import parse_version
 
 
-def get_ffmpeg_version():
+def is_ffmpeg_usable():
     try:
         console_output = subprocess.run(
             ["ffmpeg", "-version"],
@@ -10,12 +11,22 @@ def get_ffmpeg_version():
             stderr=subprocess.STDOUT,
         ).stdout
     except FileNotFoundError:
-        return None
+        return "not_detected"
 
-    regex = r"ffmpeg version \D?(\d+(?:\.\d+)*)"
+    console_output = str(console_output)
+
+    regex = r"libavutil\s*((?:\d+\.\s*){2}\d+)"
     match = re.search(regex, str(console_output))
 
-    groups = match.groups()
-    version = groups[0].split(".")
+    if match:
+        groups = match.groups()
+        version_string = "".join(groups[0].split())
 
-    return [int(version_part) for version_part in version]
+        # Version 56.31.100 is the libavutil version used in the ffmpeg release 4.2.4 "Ada"
+        if parse_version(version_string) >= parse_version("56.31.100"):
+            return "usable"
+
+        else:
+            return "requirements_unsatisfied"
+
+    return "unknown_version"
