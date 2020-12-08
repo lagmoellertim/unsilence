@@ -3,7 +3,6 @@
 *<p align="center">Console Interface and Library to remove silent parts of a media file</p>*
 
 <p align="center">
-  <a href="https://gitter.im/unsilence-tool/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge" target="_blank"><img src="https://badges.gitter.im/unsilence-tool/community.svg" alt="Gitter"/></a>
   <a href="https://github.com/lagmoellertim/unsilence/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="MIT License Badge"/></a>
   <a href="https://github.com/lagmoellertim/unsilence/actions" target="_blank"><img src="https://github.com/lagmoellertim/unsilence/workflows/Upload Python Package/badge.svg" alt="Github Action Badge"/></a>
   <a href="https://hub.docker.com/repository/docker/lagmoellertim/unsilence" target="_blank"><img src="https://img.shields.io/docker/cloud/build/lagmoellertim/unsilence" alt="Docker Cloud Build Status"/></a>
@@ -57,7 +56,7 @@ You can use it to **speed up** videos without changing the audible speed, so you
 - You want to have some fun and remove all the audible parts from a video, leaving only the parts where nearly silent noises are in the video (breathing, writing, ...)
 
 ### Communication
-If you have any (technical) questions about unsilence, you can ask/discuss it on [Gitter](https://gitter.im/unsilence-tool/community) to get community feedback. To report a bug or suggest a new feature, create a new issue instead. 
+If you have any (technical) questions about unsilence or want to get community feedback, you can use the new [GitHub Discussions Feature](https://github.com/lagmoellertim/unsilence/discussions/). To report a bug or suggest a new feature, create a new issue instead. 
 
 ### Usage Information
 
