@@ -1,7 +1,3 @@
-<h1 align="center">Unsilence</h1>
-
-*<p align="center">Console Interface and Library to remove silent parts of a media file</p>*
-
 <p align="center">
   <a href="https://github.com/lagmoellertim/unsilence/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="MIT License Badge"/></a>
   <a href="https://github.com/lagmoellertim/unsilence/actions" target="_blank"><img src="https://github.com/lagmoellertim/unsilence/workflows/Upload Python Package/badge.svg" alt="Github Action Badge"/></a>
