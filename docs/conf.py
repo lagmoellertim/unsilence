@@ -28,7 +28,8 @@ author = 'Tim-Luca Lagmöller'
 # ones.
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinx_rtd_theme"
+    "sphinx_rtd_theme",
+    "autoapi.extension"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -52,4 +53,6 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-autodoc_member_order = 'bysource'
+autoapi_python_class_content = "both"
+autoapi_type = 'python'
+autoapi_dirs = ['../unsilence/']

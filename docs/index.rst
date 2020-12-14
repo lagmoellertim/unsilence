@@ -1,11 +1,7 @@
 ###########################################
-Style guide for Sphinx-based documentations
+unsilence
 ###########################################
 
-This project is about coding standards for `Sphinx`_-based documentations.
-
-This project focuses on conventions about what :pep:`8` calls "style
-guide".
 
 
 ********
@@ -16,8 +12,6 @@ Contents
    :maxdepth: 2
 
    getting_started/index
-   code_documentation/index
-
 
 ******************
 Indices and tables
