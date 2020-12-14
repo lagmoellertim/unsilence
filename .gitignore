@@ -3,3 +3,5 @@ venv/
 .idea
 .tmp/
 local/
+docs/_build/
+.vscode/
