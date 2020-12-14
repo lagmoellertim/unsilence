@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Code Documentation &mdash; unsilence  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Installation" href="../getting_started/installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> unsilence
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Code Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">unsilence</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Code Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/code_documentation/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="code-documentation">
+<h1>Code Documentation<a class="headerlink" href="#code-documentation" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="unsilence.Unsilence">
+<em class="property">class </em><code class="sig-prename descclassname">unsilence.</code><code class="sig-name descname">Unsilence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_file</span><span class="p">:</span> <span class="n">pathlib.Path</span></em>, <em class="sig-param"><span class="n">temp_dir</span><span class="p">:</span> <span class="n">pathlib.Path</span> <span class="o">=</span> <span class="default_value">WindowsPath('.tmp')</span></em><span class="sig-paren">)</span><a class="headerlink" href="#unsilence.Unsilence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unsilence Class to remove (or isolate or many other use cases) silence from audible video parts</p>
+<dl class="py method">
+<dt id="unsilence.Unsilence.detect_silence">
+<code class="sig-name descname">detect_silence</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#unsilence.Unsilence.detect_silence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detects silence of the file (Options can be specified in kwargs)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Kwargs</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><em>silence_level</em> (int) – Threshold of what should be classified as silent/audible (default -35) (in dB)</p></li>
+<li><p><em>silence_time_threshold</em> (float) – Resolution of the ffmpeg detection algorithm (default 0.5) (in seconds)</p></li>
+<li><p><em>short_interval_threshold</em> (float) – The shortest allowed interval length (default: 0.3) (in seconds)</p></li>
+<li><p><em>stretch_time</em> – (float) Time the interval should be enlarged/shrunken (default 0.25) (in seconds)</p></li>
+<li><dl class="simple">
+<dt><em>on_silence_detect_progress_update</em> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Function that should be called on progress update</dt><dd><p>(called like: func(current, total))</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A generated Intervals object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="unsilence.Unsilence.set_intervals">
+<code class="sig-name descname">set_intervals</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">intervals</span><span class="p">:</span> <span class="n">unsilence.lib.intervals.Intervals.Intervals</span></em><span class="sig-paren">)</span><a class="headerlink" href="#unsilence.Unsilence.set_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the intervals so that they do not need to be re-detected</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><p><em>intervals</em> – Intervals collection</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="unsilence.Unsilence.get_intervals">
+<code class="sig-name descname">get_intervals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#unsilence.Unsilence.get_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current Intervals so they can be reused if wanted
+:return: Intervals collection</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="unsilence.Unsilence.estimate_time">
+<code class="sig-name descname">estimate_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">audible_speed</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">6</span></em>, <em class="sig-param"><span class="n">silent_speed</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#unsilence.Unsilence.estimate_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates the time (savings) when the current options are applied to the intervals
+:param audible_speed: The speed at which the audible intervals get played back at
+:param silent_speed: The speed at which the silent intervals get played back at
+:return: Dictionary of time information
+:exception: ValueError if silence detection was never run</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="unsilence.Unsilence.render_media">
+<code class="sig-name descname">render_media</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">output_file</span><span class="p">:</span> <span class="n">pathlib.Path</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#unsilence.Unsilence.render_media" title="Permalink to this definition">¶</a></dt>
+<dd><p>Renders the current intervals with options specified in the kwargs
+:param output_file: Where the final file should be saved at
+:param kwargs: Keyword args, more information below
+:return: None</p>
+<dl>
+<dt>kwargs:</dt><dd><p>audio_only: Whether the output should be audio only (bool)
+audible_speed: The speed at which the audible intervals get played back at (float)
+silent_speed: The speed at which the silent intervals get played back at (float)
+audible_volume: The volume at which the audible intervals get played back at (float)
+silent_volume: The volume at which the silent intervals get played back at (float)
+drop_corrupted_intervals: Whether corrupted video intervals should be discarded or tried to recover (bool)
+threads: Number of threads to render simultaneously (int &gt; 0)
+on_render_progress_update: Function that should be called on render progress update</p>
+<blockquote>
+<div><p>(called like: func(current, total))</p>
+</div></blockquote>
+<dl class="simple">
+<dt>on_concat_progress_update: Function that should be called on concat progress update</dt><dd><p>(called like: func(current, total))</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="unsilence.Unsilence.cleanup">
+<code class="sig-name descname">cleanup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#unsilence.Unsilence.cleanup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cleans up the temporary directories, called automatically when the program ends
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../getting_started/installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tim-Luca Lagmöller
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
