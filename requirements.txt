@@ -1,2 +1,2 @@
 argparse~=1.4.0
-rich~=9.3.0
+rich~=9.4.0
