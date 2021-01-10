@@ -6,7 +6,7 @@ from rich.progress import Progress
 from unsilence.Unsilence import Unsilence
 from unsilence.command_line.ChoiceDialog import choice_dialog
 from unsilence.command_line.ParseArguments import parse_arguments
-from unsilence.command_line.PrettyTimeEstimate import pretty_time_estimate
+from unsilence.command_line.PrettyTimeEstimate import pretty_time_estimate, pretty_time_estimate_sla
 from unsilence.command_line.TerminalSupport import repair_console
 
 
@@ -25,9 +25,10 @@ def main():
     sys.exit(0)
 
 
-def run():
+def run(sla=False):
     """
     Run the Console Interface for Unsilence
+    optional argument :sla: -  True if the user wishes to rerun with sla on after finding output to be same as input.
     :return: None
     """
     sys.tracebacklimit = 0
@@ -38,7 +39,7 @@ def run():
     if args.debug:
         sys.tracebacklimit = 1000
 
-    if args.output_file.exists() and not args.non_interactive_mode:
+    if args.output_file.exists() and not args.non_interactive_mode and not sla: # Don't ask whether want to overwrite second time when ran with SLA.
         if not choice_dialog(console, "File already exists. Overwrite?", default=False):
             return
 
@@ -69,9 +70,41 @@ def run():
         def update_task(current_task):
             def handler(current_val, total):
                 progress.update(current_task, total=total, completed=current_val)
-
+                
             return handler
 
+        if sla:   #If user wishes to rerun with SLA on
+            args.silence_level_analysis = "normal"
+        if args.silence_level_analysis:
+            argument_dict_for_sla = argument_dict_for_silence_detect.copy()
+            estimated_times = {}
+
+            sla_levels = {'low': range(-60, -35, 5),  # -60 to -40
+                          'normal': range(-45, -20, 5),  # -45 to -25
+                          'high': range(-35, -10, 5),  # -35 to -15
+                          'full': range(-60, -5, 5)}  # -60 to -10
+
+            for silence_level in sla_levels[args.silence_level_analysis]:
+                progress.start()
+                sla_subtask = progress.add_task("SLA for silence level " + str(silence_level), total=1)
+                argument_dict_for_sla['silence_level'] = silence_level
+                continual.detect_silence(on_silence_detect_progress_update=update_task(sla_subtask), **argument_dict_for_sla)
+                estimated_times['silence_level_'+str(silence_level)] = continual.estimate_time(args.audible_speed, args.silent_speed)
+                progress.stop()
+                progress.remove_task(sla_subtask)
+
+            console.print(pretty_time_estimate_sla(estimated_times))
+            if not args.non_interactive_mode:
+                if not choice_dialog(console, "Silence level analysis finished. Continue with original silence level?", default=True):
+                    while True:
+                        try:
+                            new_silence_level = float(console.input("Enter a new silence level value: "))
+                            break
+                        except ValueError:
+                            console.print("Please enter a valid value (float)")
+                    argument_dict_for_silence_detect['silence_level'] = new_silence_level
+
+        progress.start()
         silence_detect_task = progress.add_task("Calculating Intervals...", total=1)
 
         continual.detect_silence(
@@ -87,10 +120,14 @@ def run():
         estimated_time = continual.estimate_time(args.audible_speed, args.silent_speed)
         console.print(pretty_time_estimate(estimated_time))
 
-        print()
-
         if not args.non_interactive_mode:
-            if not choice_dialog(console, "Continue with these options?", default=True):
+            if estimated_time['delta']['all'][0] == 0 and estimated_time['delta']['audible'][0] == 0 and estimated_time['delta']['silent'][0] == 0:
+                console.print("There is no change with the current parameters.")
+                if choice_dialog(console, "Run silence level analysis (sla) to find silence levels? Press n to continue instead anyway.", default="True"):
+                    run(sla=True)
+                    return
+
+            elif not choice_dialog(console, "Continue with these options?", default=True):
                 return
 
         progress.start()
