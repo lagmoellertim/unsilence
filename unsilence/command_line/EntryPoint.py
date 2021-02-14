@@ -1,3 +1,4 @@
+from datetime import datetime
 import sys
 
 from rich.console import Console
@@ -6,7 +7,7 @@ from rich.progress import Progress
 from unsilence.Unsilence import Unsilence
 from unsilence.command_line.ChoiceDialog import choice_dialog
 from unsilence.command_line.ParseArguments import parse_arguments
-from unsilence.command_line.PrettyTimeEstimate import pretty_time_estimate
+from unsilence.command_line.PrettyTimeEstimate import format_timedelta, pretty_time_estimate
 from unsilence.command_line.TerminalSupport import repair_console
 
 
@@ -74,6 +75,8 @@ def run():
 
         silence_detect_task = progress.add_task("Calculating Intervals...", total=1)
 
+        start_time = datetime.today()
+
         continual.detect_silence(
             on_silence_detect_progress_update=update_task(silence_detect_task),
             **argument_dict_for_silence_detect
@@ -106,5 +109,7 @@ def run():
 
         progress.stop()
 
-    console.print("\n[green]Finished![/green] :tada:")
+    time_passed = datetime.today() - start_time
+    time_passed_str = format_timedelta(time_passed.seconds)
+    console.print(f"\n[green]Finished in {time_passed_str}![\green] :tada:")
     print()
