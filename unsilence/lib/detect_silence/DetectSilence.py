@@ -51,7 +51,9 @@ def detect_silence(input_file: Path, **kwargs):
         if "[silencedetect" in line:
             capture = re.search("\\[silencedetect @ [0-9xa-f]+] silence_([a-z]+): (-?[0-9]+.?[0-9]*[e-]*[0-9]*)",
                                 line)
-
+            if capture is None:
+                continue
+                
             event = capture[1]
             time = float(capture[2])
 
@@ -71,6 +73,8 @@ def detect_silence(input_file: Path, **kwargs):
 
         elif "Duration" in line:
             capture = re.search("Duration: ([0-9:]+.?[0-9]*)", line)
+            if capture is None:
+                continue
             hour, minute, second_millisecond = capture[1].split(":")
             second, millisecond = second_millisecond.split(".")
             media_duration = float(str(int(second) + 60 * (int(minute) + 60 * int(hour))) + "." + millisecond)
