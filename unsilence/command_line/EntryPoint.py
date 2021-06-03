@@ -111,5 +111,5 @@ def run():
 
     time_passed = datetime.today() - start_time
     time_passed_str = format_timedelta(time_passed.seconds)
-    console.print(f"\n[green]Finished in {time_passed_str}![\green] :tada:")
+    console.print(f"\n[green]Finished in {time_passed_str}![/green] :tada:")
     print()
