@@ -30,6 +30,7 @@ def detect_silence(input_file: Path, **kwargs):
     command = [
         "ffmpeg",
         "-i", str(input_file),
+        "-vn",
         "-af",
         f"silencedetect=noise={kwargs.get('silence_level', -35)}dB:d={kwargs.get('silence_time_threshold', 0.5)}",
         "-f", "null",
