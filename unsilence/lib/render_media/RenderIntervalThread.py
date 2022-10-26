@@ -52,6 +52,18 @@ class RenderIntervalThread(threading.Thread):
                     drop_corrupted_intervals=self.__render_options.drop_corrupted_intervals
                 )
 
+                if completed and self.__render_options.check_intervals:
+                    probe_output = subprocess.run(
+                        [
+                            "ffprobe",
+                            "-loglevel", "quiet",
+                            f"{task.interval_output_file}"
+                        ],
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.STDOUT
+                    )
+                    completed = probe_output.returncode == 0
+
                 if self.__on_task_completed is not None:
                     self.__on_task_completed(task, not completed)
             else:

@@ -58,7 +58,8 @@ class MediaRenderer:
             silent_speed=kwargs.get("silent_speed", 6),
             audible_volume=kwargs.get("audible_volume", 1),
             silent_volume=kwargs.get("silent_volume", 0.5),
-            drop_corrupted_intervals=kwargs.get("drop_corrupted_intervals", False)
+            drop_corrupted_intervals=kwargs.get("drop_corrupted_intervals", False),
+            check_intervals=kwargs.get("check_intervals", False)
         )
 
         intervals = intervals.remove_short_intervals_from_start(
