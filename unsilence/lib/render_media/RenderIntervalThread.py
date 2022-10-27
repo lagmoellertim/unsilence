@@ -52,7 +52,7 @@ class RenderIntervalThread(threading.Thread):
                     drop_corrupted_intervals=self.__render_options.drop_corrupted_intervals
                 )
 
-                if completed and self.__render_options.check_intervals:
+                if completed and not self.__render_options.skip_check_intervals:
                     probe_output = subprocess.run(
                         [
                             "ffprobe",
