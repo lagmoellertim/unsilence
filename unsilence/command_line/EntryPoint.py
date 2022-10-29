@@ -55,7 +55,7 @@ def run():
 
     argument_list_for_renderer = [
         "audio_only", "audible_speed", "silent_speed", "audible_volume", "silent_volume",
-        "drop_corrupted_intervals", "threads", "skip_check_intervals"
+        "drop_corrupted_intervals", "threads", "check_intervals"
     ]
 
     argument_dict_for_renderer = {

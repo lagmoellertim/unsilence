@@ -52,7 +52,7 @@ class RenderIntervalThread(threading.Thread):
                     drop_corrupted_intervals=self.__render_options.drop_corrupted_intervals
                 )
 
-                if completed and not self.__render_options.skip_check_intervals:
+                if completed and self.__render_options.check_intervals:
                     probe_output = subprocess.run(
                         [
                             "ffprobe",
@@ -142,6 +142,8 @@ class RenderIntervalThread(threading.Thread):
                 current_speed = self.__render_options.audible_speed
                 current_volume = self.__render_options.audible_volume
 
+            current_speed = RenderIntervalThread.clamp_speed(interval.duration, current_speed)
+
             if not self.__render_options.audio_only:
                 complex_filter.extend([
                     f"[0:v]setpts={round(1 / current_speed, 4)}*PTS[v]",
@@ -166,3 +168,12 @@ class RenderIntervalThread(threading.Thread):
         command.append(str(interval_output_file))
 
         return command
+
+    @staticmethod
+    def clamp_speed(duration: float, speed: float):
+        MININUM_DURATION = 0.25
+
+        if duration / speed < MININUM_DURATION:
+            return duration / MININUM_DURATION
+        else:
+            return speed
