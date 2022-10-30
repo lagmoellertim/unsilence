@@ -49,7 +49,8 @@ class RenderIntervalThread(threading.Thread):
                 completed = self.__render_interval(
                     task.interval_output_file,
                     task.interval,
-                    drop_corrupted_intervals=self.__render_options.drop_corrupted_intervals
+                    drop_corrupted_intervals=self.__render_options.drop_corrupted_intervals,
+                    minimum_interval_duration=self.__render_options.minimum_interval_duration
                 )
 
                 if completed and self.__render_options.check_intervals:
@@ -77,7 +78,7 @@ class RenderIntervalThread(threading.Thread):
         self.__should_exit = True
 
     def __render_interval(self, interval_output_file: pathlib.Path, interval: Interval,
-                          apply_filter=True, drop_corrupted_intervals=False):
+                          apply_filter=True, drop_corrupted_intervals=False, minimum_interval_duration=0.25):
         """
         Renders an interval with the given render options
         :param interval_output_file: Where the current output file should be saved
@@ -87,7 +88,7 @@ class RenderIntervalThread(threading.Thread):
         :return: Whether it is corrupted or not
         """
 
-        command = self.__generate_command(interval_output_file, interval, apply_filter)
+        command = self.__generate_command(interval_output_file, interval, apply_filter, minimum_interval_duration)
 
         console_output = subprocess.run(
             command,
@@ -103,7 +104,8 @@ class RenderIntervalThread(threading.Thread):
                     interval_output_file,
                     interval,
                     apply_filter=False,
-                    drop_corrupted_intervals=drop_corrupted_intervals
+                    drop_corrupted_intervals=drop_corrupted_intervals,
+                    minimum_interval_duration=minimum_interval_duration
                 )
             else:
                 raise IOError(f"Input file is corrupted between {interval.start} and {interval.end} (in seconds)")
@@ -113,7 +115,7 @@ class RenderIntervalThread(threading.Thread):
 
         return True
 
-    def __generate_command(self, interval_output_file: pathlib.Path, interval: Interval, apply_filter: bool):
+    def __generate_command(self, interval_output_file: pathlib.Path, interval: Interval, apply_filter: bool, minimum_interval_duration: float):
         """
         Generates the ffmpeg command to process the video
         :param interval_output_file: Where the media interval should be saved
@@ -142,7 +144,7 @@ class RenderIntervalThread(threading.Thread):
                 current_speed = self.__render_options.audible_speed
                 current_volume = self.__render_options.audible_volume
 
-            current_speed = RenderIntervalThread.clamp_speed(interval.duration, current_speed)
+            current_speed = RenderIntervalThread.clamp_speed(interval.duration, current_speed, minimum_interval_duration)
 
             if not self.__render_options.audio_only:
                 complex_filter.extend([
@@ -170,10 +172,8 @@ class RenderIntervalThread(threading.Thread):
         return command
 
     @staticmethod
-    def clamp_speed(duration: float, speed: float):
-        MININUM_DURATION = 0.25
-
-        if duration / speed < MININUM_DURATION:
-            return duration / MININUM_DURATION
+    def clamp_speed(duration: float, speed: float, minimum_interval_duration=0.25):
+        if duration / speed < minimum_interval_duration:
+            return duration / minimum_interval_duration
         else:
             return speed
