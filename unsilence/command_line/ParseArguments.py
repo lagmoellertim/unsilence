@@ -70,6 +70,11 @@ def parse_arguments():
                         help="The volume at which silent parts should be played back at")
     parser.add_argument("-dci", "--drop-corrupted-intervals", action="store_true",
                         help="Whether corrupted video intervals should be discarded or tried to recover")
+    parser.add_argument("-ci", "--check-intervals", action="store_true",
+                        help="Actively checks for invalid intervals and drops them (Takes longer)")
+    parser.add_argument("-mid", "--minimum-interval-duration", type=float, default=0.25,
+                        help="Minimum duration of an interval after speedup to ensure correct concatenation")
+
 
     parser.add_argument("-t", "--threads", type=number_bigger_than_zero, default=2,
                         help="Number of threads to be used while rendering")
